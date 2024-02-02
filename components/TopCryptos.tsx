@@ -1,19 +1,52 @@
 "use client";
-import { useEffect, useState } from "react";
+import useSWR from "swr";
 
 export default function TopCryptos() {
-  interface CryptoData {
-    data: {
-      0: { name: string };
-    };
-  }
-  const [crypto, setCrypto] = useState<CryptoData>();
-  useEffect(() => {
+  const fetcher = () =>
     fetch(
       "https://api.cryptorank.io/v1/currencies?api_key=941e1f87226bb8f4285a7f448a59172b6bd7260c36a4585692365e6d4d2e&symbols=BTC,ETH,MKR,BNB,BCH,LTC"
-    )
-      .then((data) => data.json())
-      .then((dataJson) => setCrypto(dataJson));
-  }, []);
-  return <>{crypto && console.log(crypto.data[0].name)}</>;
+    ).then((res) => res.json());
+  const { data } = useSWR(
+    "https://api.cryptorank.io/v1/currencies?api_key=941e1f87226bb8f4285a7f448a59172b6bd7260c36a4585692365e6d4d2e&symbols=BTC,ETH,MKR,BNB,BCH,LTC",
+    fetcher
+  );
+
+  return (
+    <>
+      <h1 className="text-2xl text-center p-4 font-bold from-purple-600 via-pink-600 to-blue-600 bg-gradient-to-r bg-clip-text text-transparent">
+        Today's Cryptocurrency Prices:
+      </h1>
+      <div className="flex justify-center">
+        <div className="w-8/12 border border-gray-900">
+          <div className="grid grid-cols-3 border-b border-gray-900 p-4">
+            <h1 className="text-center text-xl font-bold from-purple-600 via-pink-600 to-blue-600 bg-gradient-to-r bg-clip-text text-transparent">
+              Name:
+            </h1>
+            <h1 className="text-center text-xl font-bold from-purple-600 via-pink-600 to-blue-600 bg-gradient-to-r bg-clip-text text-transparent">
+              Symbol:
+            </h1>
+            <h1 className="text-center text-xl font-bold from-purple-600 via-pink-600 to-blue-600 bg-gradient-to-r bg-clip-text text-transparent">
+              Price:
+            </h1>
+          </div>
+          {data &&
+            data.data.map((item: any) => {
+              return (
+                <div className="grid grid-cols-3 p-4">
+                  <h1 className="text-center font-bold text-white ">
+                    {item.name}
+                  </h1>
+                  <h1 className="text-center font-bold text-white">
+                    {item.symbol}
+                  </h1>
+                  <h1 className="text-center font-bold text-white">
+                    USD: {item.values.USD.price.toPrecision(6)}
+                  </h1>
+                </div>
+              );
+            })}
+        </div>
+      </div>
+    </>
+  );
 }
