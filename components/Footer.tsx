@@ -9,7 +9,7 @@ export default function Footer() {
           <ul className="flex flex-wrap items-center mb-2 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
             <li>
               <a
-                href="#"
+                href="/about"
                 className="font-bold me-4 md:me-6 from-purple-600 via-pink-600 to-blue-600 bg-gradient-to-r bg-clip-text text-transparent"
               >
                 About
@@ -19,9 +19,9 @@ export default function Footer() {
         </div>
         <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
         <span className="block text-sm text-gray-500 sm:text-center dark:text-gray-400">
-          © 2023{" "}
-          <a href="https://flowbite.com/" className="hover:underline">
-            Flowbite™
+          © 2024{" "}
+          <a href="/about" className="hover:underline">
+            icarodredd™
           </a>
           . All Rights Reserved.
         </span>

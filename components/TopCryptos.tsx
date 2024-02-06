@@ -4,10 +4,10 @@ import useSWR from "swr";
 export default function TopCryptos() {
   const fetcher = () =>
     fetch(
-      "https://api.cryptorank.io/v1/currencies?api_key=941e1f87226bb8f4285a7f448a59172b6bd7260c36a4585692365e6d4d2e&symbols=BTC,ETH,MKR,BNB,BCH,LTC"
+      `https://api.cryptorank.io/v1/currencies?api_key=${process.env.NEXT_PUBLIC_API_KEY}&symbols=BTC,ETH,MKR,BNB,BCH,LTC`
     ).then((res) => res.json());
   const { data } = useSWR(
-    "https://api.cryptorank.io/v1/currencies?api_key=941e1f87226bb8f4285a7f448a59172b6bd7260c36a4585692365e6d4d2e&symbols=BTC,ETH,MKR,BNB,BCH,LTC",
+    `https://api.cryptorank.io/v1/currencies?api_key=${process.env.NEXT_PUBLIC_API_KEY}&symbols=BTC,ETH,MKR,BNB,BCH,LTC`,
     fetcher
   );
 
