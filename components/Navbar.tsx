@@ -6,7 +6,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 interface CryptoData {
-  data: [{ name: string; values: { USD: { price: number } } }];
+  data: [{ name: string; id: number; values: { USD: { price: number } } }];
 }
 
 export default function Navbar() {

@@ -14,7 +14,7 @@ export default function TopCryptos() {
   return (
     <>
       <h1 className="text-2xl text-center p-4 font-bold from-purple-600 via-pink-600 to-blue-600 bg-gradient-to-r bg-clip-text text-transparent">
-        Today's Cryptocurrency Prices:
+        Todays Cryptocurrency Prices:
       </h1>
       <div className="flex justify-center">
         <div className="w-8/12 border border-gray-900">
@@ -32,7 +32,7 @@ export default function TopCryptos() {
           {data &&
             data.data.map((item: any) => {
               return (
-                <div className="grid grid-cols-3 p-4">
+                <div key={item.id} className="grid grid-cols-3 p-4">
                   <h1 className="text-center font-bold text-white ">
                     {item.name}
                   </h1>
