@@ -81,7 +81,7 @@ export function SearchCrypto({ setClick }: any) {
             className="bg-gray-800 w-6/12 rounded-3xl p-2"
           />
         </div>
-        <div className="flex justify-center gap-4 ">
+        <div className="flex justify-center gap-4 text-white">
           {result ? (
             <>
               <h1>{result.data[0].name}</h1>
